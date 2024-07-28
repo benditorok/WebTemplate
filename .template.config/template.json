@@ -1,14 +1,14 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Bendegúz István Török",
-  "classifications": ["Web", "ASP.NET", "Clean Architecture"],
+  "classifications": ["Web", "Blazor", "Clean Architecture"],
   "tags": {
     "language": "C#",
     "type": "project"
   },
   "identity": "BendeguzTorok.WebTemplate",
-  "name": "ASP.NET Clean Architecture Solution",
-  "shortName": "clean-arch",
+  "name": "Blazor Clean Architecture Solution",
+  "shortName": "clean-blazor",
   "sourceName": "WebTemplate",
   "preferNameDirectory": true
 }
