@@ -8,7 +8,7 @@ public class UnitOfWork : IUnitOfWork
 
     public UnitOfWork(ApplicationDbContext ctx)
     {
-        this.ctx=ctx;
+        this.ctx = ctx;
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

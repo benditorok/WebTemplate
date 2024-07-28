@@ -1,7 +1,87 @@
 ﻿@page "/"
+@using WebTemplate.Application.Products
+@using WebTemplate.Domain.Entities
+@inject IJSRuntime JsRuntime
+@inject CreateProductCommandHandler CreateProductCommandHandler
+@inject GetProductsByNameQueryHandler GetProductsByNameQueryHandler
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+
+<div>
+    <p>Add new product</p>
+    <br />
+    <input @bind="@ProductName" placeholder="Product name" />
+    <input @bind="@ProductPrice" placeholder="Product price" />
+    <button @onclick="@AddProduct">Add new product</button>
+</div>
+
+<div>
+    <p>Get Products by name</p>
+    <br />
+    <input @bind="@NameFilter" placeholder="Product name" />
+    <button @onclick="@ListProductsWithname">Filter</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Products)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+@code {
+    public string ProductName { get; set; } = "";
+    public decimal ProductPrice { get; set; } = 0;
+    public string NameFilter { get; set; } = "";
+
+    public List<Product> Products = new();
+
+    public async Task AddProduct()
+    {
+        var command = new CreateProductCommand(new()
+            {
+                Name = ProductName,
+                Price = ProductPrice
+            });
+
+        var result = await CreateProductCommandHandler.Handle(command, CancellationToken.None);
+
+        if (result.IsSuccess)
+            await JsRuntime.InvokeVoidAsync("alert", $"Creation was successful! Product id: {result.Value?.Id}");
+        else
+            await JsRuntime.InvokeVoidAsync("alert", "Creation failed!");
+
+        ProductName = "";
+        ProductPrice = 0;
+    }
+
+    public async Task ListProductsWithname()
+    {
+        var query = new GetProductsByNameQuery(NameFilter);
+        var result = await GetProductsByNameQueryHandler.Handle(query, CancellationToken.None);
+
+        if (result.IsSuccess)
+            Products = result.GetValue().ToList();
+        else
+            Products = new();
+    }
+}

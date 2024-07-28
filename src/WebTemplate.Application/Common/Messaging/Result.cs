@@ -8,7 +8,7 @@ public enum ResultStatus
     Error,
 }
 
-public class Result<T> : IResult
+public class Result<T>
 {
     public T? Value { get; init; }
 
@@ -42,12 +42,12 @@ public class Result<T> : IResult
         Errors=errors;
     }
 
-    public object GetValue()
+    public T GetValue()
     {
         if (Value is not null && IsSuccess)
             return Value;
 
-        throw new InvalidOperationException("The result was not successful!w");
+        throw new InvalidOperationException("The result was not successful!");
     }
 
     public static Result<T> Success(T value)
