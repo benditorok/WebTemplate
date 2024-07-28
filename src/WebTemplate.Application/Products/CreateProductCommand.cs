@@ -17,7 +17,7 @@ public sealed class CreateProductCommandHandler : ICommandHandler<CreateProductC
         this.unitOfWork = unitOfWork;
     }
 
-    public async Task<Result<Product>> Handle(CreateProductCommand command, CancellationToken cancellationToken)
+    public async Task<Result<Product>> HandleAsync(CreateProductCommand command, CancellationToken cancellationToken)
     {
         // Do validation
         // ...

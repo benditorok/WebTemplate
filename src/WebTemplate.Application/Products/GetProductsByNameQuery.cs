@@ -14,7 +14,7 @@ public sealed class GetProductsByNameQueryHandler : IQueryHandler<GetProductsByN
         this.productsRepository = productsRepository;
     }
 
-    public async Task<Result<IEnumerable<Product>>> Handle(GetProductsByNameQuery query, CancellationToken cancellationToken)
+    public async Task<Result<IEnumerable<Product>>> HandleAsync(GetProductsByNameQuery query, CancellationToken cancellationToken)
     {
         var products = await productsRepository.GetByNameAsync(query.Name, cancellationToken);
 
