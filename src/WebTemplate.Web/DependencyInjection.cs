@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MudBlazor.Services;
 using WebTemplate.Infrastructure.Data;
 
 namespace WebTemplate.Web;
@@ -13,6 +14,8 @@ public static class DependencyInjection
                 .UseInMemoryDatabase("memdb")
                 .UseLazyLoadingProxies();
         });
+
+        services.AddMudServices();
 
         return services;
     }

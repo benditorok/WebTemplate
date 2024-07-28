@@ -6,6 +6,7 @@
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.7" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
+		<PackageVersion Include="MudBlazor" Version="7.4.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageVersion Include="coverlet.collector" Version="6.0.0" />

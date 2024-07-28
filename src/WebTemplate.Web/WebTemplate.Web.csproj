@@ -13,6 +13,7 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+		<PackageReference Include="MudBlazor" />
 	</ItemGroup>
 
 	<ItemGroup>
