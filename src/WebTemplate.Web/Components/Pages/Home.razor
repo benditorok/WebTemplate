@@ -12,47 +12,49 @@
 
 Welcome to your new app.
 
+<p>Add new product</p>
+<br />
 
-<div>
-    <p>Add new product</p>
-    <br />
-    <input @bind="@ProductName" placeholder="Product name" />
-    <input @bind="@ProductPrice" placeholder="Product price" />
-    <button @onclick="@AddProduct">Add new product</button>
-</div>
+<MudGrid>
+    <MudItem xl="12" xs="6">
+        <MudInput @bind-Value="@ProductName" Placeholder="Product name" />
+        <MudInput @bind-Value="@ProductPrice" Placeholder="Product price" />
+    </MudItem>
 
-<div>
-    <p>Get Products by name</p>
-    <br />
-    <input @bind="@NameFilter" placeholder="Product name" />
-    <button @onclick="@ListProductsWithname">Filter</button>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Products)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@item.Price</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+    <MudItem xl="12" xs="6">
+        <MudButton OnClick="@AddProduct">Add new product</MudButton>
+    </MudItem>
+</MudGrid>
 
+<hr />
 
+<MudGrid>
+    <MudItem xl="12" xs="6">
+        <MudInput @bind-Value="@NameFilter" Placeholder="Product name" />
+    </MudItem>
+
+    <MudItem xl="12" xs="6">
+        <MudButton OnClick="@ListProductsWithname">Filter</MudButton>
+    </MudItem>
+</MudGrid>
+
+<MudTable T="Product" Items="Products">
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Price</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.Id</MudTd>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Price">@context.Price</MudTd>
+    </RowTemplate>
+</MudTable>
 
 @code {
-    public string ProductName { get; set; } = "";
-    public decimal ProductPrice { get; set; } = 0;
-    public string NameFilter { get; set; } = "";
+    public string? ProductName { get; set; }
+    public decimal? ProductPrice { get; set; }
+    public string? NameFilter { get; set; }
 
     public List<Product> Products = new();
 
@@ -60,8 +62,8 @@ Welcome to your new app.
     {
         var command = new CreateProductCommand(new()
             {
-                Name = ProductName,
-                Price = ProductPrice
+                Name = ProductName ?? "",
+                Price = ProductPrice ?? 0
             });
 
         var result = await CreateProductCommandHandler.HandleAsync(command, CancellationToken.None);
@@ -71,13 +73,14 @@ Welcome to your new app.
         else
             await JsRuntime.InvokeVoidAsync("alert", "Creation failed!");
 
-        ProductName = "";
-        ProductPrice = 0;
+        ProductName = null;
+        ProductPrice = null;
+        StateHasChanged();
     }
 
     public async Task ListProductsWithname()
     {
-        var query = new GetProductsByNameQuery(NameFilter);
+        var query = new GetProductsByNameQuery(NameFilter ?? "");
         var result = await GetProductsByNameQueryHandler.HandleAsync(query, CancellationToken.None);
 
         if (result.IsSuccess(out IEnumerable<Product> value))
