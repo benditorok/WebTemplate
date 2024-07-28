@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using WebTemplate.UseCases.Products;
+using WebTemplate.UseCases.Products.Commands;
+using WebTemplate.UseCases.Products.Queries;
 
 namespace WebTemplate.UseCases;
 

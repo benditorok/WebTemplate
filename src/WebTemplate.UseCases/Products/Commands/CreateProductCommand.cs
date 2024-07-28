@@ -3,7 +3,7 @@ using WebTemplate.Core.Common.Messaging;
 using WebTemplate.Core.Domain.Entities;
 using WebTemplate.Infrastructure.Data;
 
-namespace WebTemplate.UseCases.Products;
+namespace WebTemplate.UseCases.Products.Commands;
 
 public sealed record CreateProductCommand(Product Product) : ICommand<Product>;
 
