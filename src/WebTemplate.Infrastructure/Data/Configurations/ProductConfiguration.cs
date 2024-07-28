@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebTemplate.Domain.Constants;
-using WebTemplate.Domain.Entities;
+using WebTemplate.Core.Domain.Constants;
+using WebTemplate.Core.Domain.Entities;
 
 namespace WebTemplate.Infrastructure.Data.Configurations;
 

@@ -1,4 +1,4 @@
-﻿namespace WebTemplate.Domain.Constants;
+﻿namespace WebTemplate.Core.Domain.Constants;
 
 public sealed class ProductConstants
 {

@@ -1,6 +1,6 @@
 ﻿using WebTemplate.Core.Common.Data;
 using WebTemplate.Core.Common.Messaging;
-using WebTemplate.Domain.Entities;
+using WebTemplate.Core.Domain.Entities;
 
 namespace WebTemplate.Core.Products;
 
@@ -29,5 +29,5 @@ public sealed class CreateProductCommandHandler : ICommandHandler<CreateProductC
         return Result<Product>.Success(createdProductWithId);
 
         //return Result<Product>.Error($"Creation of product with id {createdProductWithId?.Id} failed!");
-    }
+    }   
 }

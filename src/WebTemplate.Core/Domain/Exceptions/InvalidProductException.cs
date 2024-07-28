@@ -1,4 +1,4 @@
-﻿namespace WebTemplate.Domain.Exceptions;
+﻿namespace WebTemplate.Core.Domain.Exceptions;
 
 public class InvalidProductException : Exception
 {

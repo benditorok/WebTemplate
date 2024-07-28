@@ -1,4 +1,4 @@
-﻿using WebTemplate.Domain.Entities;
+﻿using WebTemplate.Core.Domain.Entities;
 
 namespace WebTemplate.Core.Products;
 

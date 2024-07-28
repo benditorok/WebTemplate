@@ -10,8 +10,4 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\WebTemplate.Domain\WebTemplate.Domain.csproj" />
-	</ItemGroup>
-
 </Project>

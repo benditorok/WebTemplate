@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{262A92D9-159D-4710-B6A9-BDECDB733FE3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTemplate.Domain", "src\WebTemplate.Domain\WebTemplate.Domain.csproj", "{85B71C5B-4F75-4789-8A1F-F416720EB003}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTemplate.Infrastructure", "src\WebTemplate.Infrastructure\WebTemplate.Infrastructure.csproj", "{9D6E492F-519A-4449-818C-E6969A6FF406}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTemplate.Application.UnitTests", "tests\WebTemplate.Application.UnitTests\WebTemplate.Application.UnitTests.csproj", "{D58AA687-4439-4C00-B978-F588AB4871D8}"
@@ -34,10 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{85B71C5B-4F75-4789-8A1F-F416720EB003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85B71C5B-4F75-4789-8A1F-F416720EB003}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85B71C5B-4F75-4789-8A1F-F416720EB003}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85B71C5B-4F75-4789-8A1F-F416720EB003}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D6E492F-519A-4449-818C-E6969A6FF406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D6E492F-519A-4449-818C-E6969A6FF406}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D6E492F-519A-4449-818C-E6969A6FF406}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,7 +53,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{85B71C5B-4F75-4789-8A1F-F416720EB003} = {5D92A971-A9FB-4D97-BA77-47322F020FAA}
 		{9D6E492F-519A-4449-818C-E6969A6FF406} = {5D92A971-A9FB-4D97-BA77-47322F020FAA}
 		{D58AA687-4439-4C00-B978-F588AB4871D8} = {262A92D9-159D-4710-B6A9-BDECDB733FE3}
 		{42707CC9-ACD4-4227-A28C-EB924FC4018F} = {5D92A971-A9FB-4D97-BA77-47322F020FAA}

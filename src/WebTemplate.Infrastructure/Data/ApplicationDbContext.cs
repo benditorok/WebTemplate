@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using WebTemplate.Domain.Entities;
+using WebTemplate.Core.Domain.Entities;
 
 namespace WebTemplate.Infrastructure.Data;
 

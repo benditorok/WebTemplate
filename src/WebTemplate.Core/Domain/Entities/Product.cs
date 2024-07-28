@@ -1,4 +1,4 @@
-﻿namespace WebTemplate.Domain.Entities;
+﻿namespace WebTemplate.Core.Domain.Entities;
 
 public class Product
 {
