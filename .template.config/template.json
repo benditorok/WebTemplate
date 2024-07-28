@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "benditorok",
+  "classifications": ["Web", "Blazor", "Clean Architecture"],
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "identity": "benditorok.WebTemplate",
+  "name": "Blazor Clean Architecture Solution",
+  "shortName": "clean-web-blazor",
+  "sourceName": "WebTemplate",
+  "preferNameDirectory": true
+}

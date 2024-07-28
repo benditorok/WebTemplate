@@ -1,0 +1,123 @@
+﻿@page "/"
+
+@using WebTemplate.Core.Domain.Entities
+@using WebTemplate.UseCases.Products.Commands
+@using WebTemplate.UseCases.Products.Queries
+
+@inject IJSRuntime JsRuntime
+@inject CreateProductCommandHandler CreateProductCommandHandler
+@inject GetProductsByNameQueryHandler GetProductsByNameQueryHandler
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<MudCard Class="my-2 pa-2" Elevation="5">
+    <MudStack>
+        <MudItem>
+            <MudToggleIconButton @bind-Toggled="_dropdownToggle"
+                                 Icon="@Icons.Material.Filled.ArrowCircleUp"
+                                 ToggledIcon="@Icons.Material.Filled.ArrowCircleDown"/>
+            <span>Add a new Product</span>
+        </MudItem>
+    </MudStack>
+
+    @if (_dropdownToggle)
+    {
+        <MudGrid>
+            <MudItem xs="4">
+                <MudInput @bind-Value="ProductName" Placeholder="Product name"/>
+            </MudItem>
+
+            <MudItem xs="4">
+                <MudInput @bind-Value="ProductPrice" Placeholder="Product price"/>
+            </MudItem>
+
+            <MudSpacer />
+            
+            <MudItem xs="12">
+                <MudDivider DividerType="DividerType.FullWidth" Class="my-1"/>
+            </MudItem>
+
+            <MudItem xs="4">
+                <MudButton OnClick="AddProduct" Variant="Variant.Outlined" Color="Color.Primary">
+                    Add new product
+                </MudButton>
+            </MudItem>
+
+        </MudGrid>
+    }
+</MudCard>
+
+<MudCard Class="my-2 pa-2" Elevation="5">
+    <MudGrid>
+        <MudItem xs="4">
+            <MudInput @bind-Value="NameFilter" Placeholder="Filter by name"/>
+        </MudItem>
+
+        <MudItem xs="4">
+            <MudButton OnClick="ListProductsWithName" Variant="Variant.Outlined" Color="Color.Secondary">
+                Filter
+            </MudButton>
+        </MudItem>
+
+        <MudSpacer/>
+    </MudGrid>
+</MudCard>
+
+<MudDataGrid Items="_products">
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="Id"/>
+        <PropertyColumn Property="x => x.Name" Title="Name"/>
+        <PropertyColumn Property="x => x.Price" Title="Price"/>
+    </Columns>
+</MudDataGrid>
+
+@code {
+    private List<Product> _products = [];
+
+    private string? ProductName { get; set; }
+    private decimal? ProductPrice { get; set; }
+    private string? NameFilter { get; set; }
+
+    private bool _dropdownToggle = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ListProductsWithName();
+    }
+
+    private async Task AddProduct()
+    {
+        var command = new CreateProductCommand(new()
+        {
+            Name = ProductName ?? "",
+            Price = ProductPrice ?? 0
+        });
+
+        var result = await CreateProductCommandHandler.HandleAsync(command, CancellationToken.None);
+
+        if (result.IsSuccess(out Product value))
+            await JsRuntime.InvokeVoidAsync("alert", $"Creation was successful! Product id: {value.Id}");
+        else
+            await JsRuntime.InvokeVoidAsync("alert", "Creation failed!");
+
+        ProductName = null;
+        ProductPrice = null;
+        _dropdownToggle = false;
+        
+        await ListProductsWithName();
+    }
+
+    private async Task ListProductsWithName()
+    {
+        var query = new GetProductsByNameQuery(NameFilter ?? "");
+        var result = await GetProductsByNameQueryHandler.HandleAsync(query, CancellationToken.None);
+
+        if (result.IsSuccess(out IEnumerable<Product> value))
+            _products = value.ToList();
+        else
+            _products = new();
+    }
+
+}
