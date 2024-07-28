@@ -12,6 +12,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\WebTemplate.Core\WebTemplate.Core.csproj" />
 		<ProjectReference Include="..\WebTemplate.Infrastructure\WebTemplate.Infrastructure.csproj" />
 	</ItemGroup>
