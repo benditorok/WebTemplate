@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using WebTemplate.Application.Products;
+using WebTemplate.Core.Products;
 
-namespace WebTemplate.Application;
+namespace WebTemplate.Core;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    public static IServiceCollection AddCore(this IServiceCollection services)
     {
         // Product handlers
         services.AddScoped<GetProductsByNameQueryHandler>();

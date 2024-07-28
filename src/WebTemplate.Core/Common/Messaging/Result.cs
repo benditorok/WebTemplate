@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace WebTemplate.Application.Common.Messaging;
+namespace WebTemplate.Core.Common.Messaging;
 
 public enum ResultStatus
 {

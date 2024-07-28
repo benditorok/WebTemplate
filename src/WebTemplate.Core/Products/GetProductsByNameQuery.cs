@@ -1,7 +1,7 @@
-﻿using WebTemplate.Application.Common.Messaging;
+﻿using WebTemplate.Core.Common.Messaging;
 using WebTemplate.Domain.Entities;
 
-namespace WebTemplate.Application.Products;
+namespace WebTemplate.Core.Products;
 
 public sealed record GetProductsByNameQuery(string Name) : IQuery<IEnumerable<Product>>;
 

@@ -1,6 +1,6 @@
 ﻿using WebTemplate.Domain.Entities;
 
-namespace WebTemplate.Application.Products;
+namespace WebTemplate.Core.Products;
 
 public interface IProductRepository
 {

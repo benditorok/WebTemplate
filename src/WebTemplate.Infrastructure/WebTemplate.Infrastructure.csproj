@@ -11,8 +11,4 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\WebTemplate.Application\WebTemplate.Application.csproj" />
-	</ItemGroup>
-
 </Project>

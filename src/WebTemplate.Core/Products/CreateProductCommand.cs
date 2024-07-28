@@ -1,8 +1,8 @@
-﻿using WebTemplate.Application.Common.Data;
-using WebTemplate.Application.Common.Messaging;
+﻿using WebTemplate.Core.Common.Data;
+using WebTemplate.Core.Common.Messaging;
 using WebTemplate.Domain.Entities;
 
-namespace WebTemplate.Application.Products;
+namespace WebTemplate.Core.Products;
 
 public sealed record CreateProductCommand(Product Product) : ICommand<Product>;
 

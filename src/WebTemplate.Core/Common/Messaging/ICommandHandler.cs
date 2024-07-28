@@ -1,4 +1,4 @@
-﻿namespace WebTemplate.Application.Common.Messaging;
+﻿namespace WebTemplate.Core.Common.Messaging;
 
 public interface ICommandHandler<in TCommand>
     where TCommand : ICommand
