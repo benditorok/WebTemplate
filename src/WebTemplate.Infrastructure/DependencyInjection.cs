@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using WebTemplate.Infrastructure.Data;
 
 namespace WebTemplate.Infrastructure;
 

@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore.InMemory;
+﻿using Microsoft.EntityFrameworkCore;
 using WebTemplate.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.JSInterop;
 
 namespace WebTemplate.Web;
 

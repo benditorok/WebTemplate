@@ -1,8 +1,7 @@
 using WebTemplate.Core;
-using WebTemplate.UseCases;
 using WebTemplate.Infrastructure;
+using WebTemplate.UseCases;
 using WebTemplate.Web;
-using WebTemplate.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,7 +2,6 @@
 using WebTemplate.Core.Common.Messaging;
 using WebTemplate.Core.Domain.Entities;
 using WebTemplate.Infrastructure.Data;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace WebTemplate.UseCases.Products.Queries;
 
