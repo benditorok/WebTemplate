@@ -1,3 +1,6 @@
+using WebTemplate.Application;
+using WebTemplate.Infrastructure;
+using WebTemplate.Web;
 using WebTemplate.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Dependency injection pipeline
+builder.Services
+    .AddApplication()
+    .AddInfrastructure()
+    .AddWeb();
 
 var app = builder.Build();
 
