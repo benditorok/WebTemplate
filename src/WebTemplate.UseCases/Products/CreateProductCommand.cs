@@ -1,22 +1,12 @@
-﻿using WebTemplate.Core.Common.Data;
-using WebTemplate.Core.Common.Messaging;
+﻿using WebTemplate.Core.Common.Messaging;
 using WebTemplate.Core.Domain.Entities;
 
-namespace WebTemplate.Core.Products;
+namespace WebTemplate.UseCases.Products;
 
 public sealed record CreateProductCommand(Product Product) : ICommand<Product>;
 
 public sealed class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, Product>
 {
-    private readonly IProductRepository repository;
-    private readonly IUnitOfWork unitOfWork;
-
-    public CreateProductCommandHandler(IProductRepository repository, IUnitOfWork unitOfWork)
-    {
-        this.repository = repository;
-        this.unitOfWork = unitOfWork;
-    }
-
     public async Task<Result<Product>> HandleAsync(CreateProductCommand command, CancellationToken cancellationToken)
     {
         // Do validation

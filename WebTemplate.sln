@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTemplate.Web", "src\WebT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTemplate.Core", "src\WebTemplate.Core\WebTemplate.Core.csproj", "{516E99FA-32DD-4C0E-B71E-9ED221855E92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTemplate.UseCases", "src\WebTemplate.UseCases\WebTemplate.UseCases.csproj", "{AA5F3FF7-97E7-40A5-BED0-C73434CCC491}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{516E99FA-32DD-4C0E-B71E-9ED221855E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{516E99FA-32DD-4C0E-B71E-9ED221855E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516E99FA-32DD-4C0E-B71E-9ED221855E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA5F3FF7-97E7-40A5-BED0-C73434CCC491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA5F3FF7-97E7-40A5-BED0-C73434CCC491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA5F3FF7-97E7-40A5-BED0-C73434CCC491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA5F3FF7-97E7-40A5-BED0-C73434CCC491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{D58AA687-4439-4C00-B978-F588AB4871D8} = {262A92D9-159D-4710-B6A9-BDECDB733FE3}
 		{42707CC9-ACD4-4227-A28C-EB924FC4018F} = {5D92A971-A9FB-4D97-BA77-47322F020FAA}
 		{516E99FA-32DD-4C0E-B71E-9ED221855E92} = {5D92A971-A9FB-4D97-BA77-47322F020FAA}
+		{AA5F3FF7-97E7-40A5-BED0-C73434CCC491} = {5D92A971-A9FB-4D97-BA77-47322F020FAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {45D16517-667C-433C-B32B-4D3164CFC20C}
