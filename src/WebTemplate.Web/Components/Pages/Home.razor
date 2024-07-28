@@ -65,8 +65,8 @@ Welcome to your new app.
 
         var result = await CreateProductCommandHandler.HandleAsync(command, CancellationToken.None);
 
-        if (result.IsSuccess)
-            await JsRuntime.InvokeVoidAsync("alert", $"Creation was successful! Product id: {result.Value?.Id}");
+        if (result.IsSuccess(out Product value))
+            await JsRuntime.InvokeVoidAsync("alert", $"Creation was successful! Product id: {value.Id}");
         else
             await JsRuntime.InvokeVoidAsync("alert", "Creation failed!");
 
@@ -79,8 +79,8 @@ Welcome to your new app.
         var query = new GetProductsByNameQuery(NameFilter);
         var result = await GetProductsByNameQueryHandler.HandleAsync(query, CancellationToken.None);
 
-        if (result.IsSuccess)
-            Products = result.GetValue().ToList();
+        if (result.IsSuccess(out IEnumerable<Product> value))
+            Products = value.ToList();
         else
             Products = new();
     }

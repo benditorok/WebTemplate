@@ -6,19 +6,16 @@ public enum ResultStatus
 {
     Success,
     Error,
+    Unavailable,
 }
 
 public class Result<T>
 {
     public T? Value { get; init; }
 
-    public Type ValueType => typeof(T);
-
     public ResultStatus ResultStatus { get; private set; }
 
     public IEnumerable<string> Errors { get; private set; } = Array.Empty<string>();
-
-    public bool IsSuccess => ResultStatus == ResultStatus.Success;
 
     public Result()
     {
@@ -31,23 +28,30 @@ public class Result<T>
 
     public Result(T? value, ResultStatus resultStatus)
     {
-        Value=value;
-        ResultStatus=resultStatus;
+        Value = value;
+        ResultStatus = resultStatus;
     }
 
     public Result(T? value, ResultStatus resultStatus, IEnumerable<string> errors)
     {
-        Value=value;
-        ResultStatus=resultStatus;
-        Errors=errors;
+        Value = value;
+        ResultStatus = resultStatus;
+        Errors = errors;
     }
 
-    public T GetValue()
+    public bool IsSuccess(out T value)
     {
-        if (Value is not null && IsSuccess)
-            return Value;
+        if (Value is not null)
+        {
+            value = Value;
+        }
+        else
+        {
+            ResultStatus = ResultStatus.Unavailable;
+            value = default!;
+        }
 
-        throw new InvalidOperationException("The result was not successful!");
+        return ResultStatus == ResultStatus.Success;
     }
 
     public static Result<T> Success(T value)
