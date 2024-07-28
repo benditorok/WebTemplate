@@ -1,4 +1,5 @@
-using WebTemplate.Application;
+using WebTemplate.Core;
+using WebTemplate.UseCases;
 using WebTemplate.Infrastructure;
 using WebTemplate.Web;
 using WebTemplate.Web.Components;
@@ -11,8 +12,9 @@ builder.Services.AddRazorComponents()
 
 // Dependency injection pipeline
 builder.Services
-    .AddApplication()
+    .AddCore()
     .AddInfrastructure()
+    .AddUseCases()
     .AddWeb();
 
 var app = builder.Build();

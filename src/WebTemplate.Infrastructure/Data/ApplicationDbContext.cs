@@ -6,7 +6,7 @@ namespace WebTemplate.Infrastructure.Data;
 
 public class ApplicationDbContext : DbContext
 {
-    protected internal virtual DbSet<Product> Products { get; set; }
+    protected internal virtual DbSet<Product> Products { get; private set; }
 
     public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
