@@ -8,6 +8,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddWeb(this IServiceCollection services)
     {
+        var configuration = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+
         services.AddLogging();
 
         services.AddDbContextFactory<ApplicationDbContext>(options =>
