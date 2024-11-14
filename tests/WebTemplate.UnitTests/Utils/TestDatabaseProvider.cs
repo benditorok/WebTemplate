@@ -4,7 +4,7 @@ using WebTemplate.Infrastructure.Data;
 
 namespace WebTemplate.UnitTests.Utils;
 
-public class TestDatabaseProvider<TContext> : IDisposable
+public class TestDatabaseProvider<TContext>
     where TContext : DbContext
 {
     private static bool _sqliteInitialized;
@@ -13,21 +13,11 @@ public class TestDatabaseProvider<TContext> : IDisposable
         new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseSqlite("DataSource=:memory:")
             .Options;
-    private TContext _context;
     private Action<TContext>? _seedFunction;
 
     public TestDatabaseProvider()
     {
         InitializeSqlite();
-
-        _context = (TContext)(
-            Activator.CreateInstance(typeof(TContext), _options)
-            ?? throw new InvalidOperationException(
-                $"Could not create instance of {typeof(TContext).Name}"
-            )
-        );
-        _context.Database.OpenConnection();
-        _context.Database.EnsureCreated();
     }
 
     private static void InitializeSqlite()
@@ -45,6 +35,26 @@ public class TestDatabaseProvider<TContext> : IDisposable
         }
     }
 
+    private TContext CreateContext()
+    {
+        var context = (TContext)(
+            Activator.CreateInstance(typeof(TContext), _options)
+            ?? throw new InvalidOperationException(
+                $"Could not create instance of {typeof(TContext).Name}"
+            )
+        );
+        context.Database.OpenConnection();
+        context.Database.EnsureCreated();
+
+        if (_seedFunction != null)
+        {
+            _seedFunction.Invoke(context);
+            context.SaveChanges();
+        }
+
+        return context;
+    }
+
     public void SetSeedFunction(Action<TContext> seed)
     {
         if (_seedFunction != null)
@@ -53,29 +63,18 @@ public class TestDatabaseProvider<TContext> : IDisposable
         _seedFunction = seed;
     }
 
-    public TContext GetContext()
+    public TContext GetDbContext()
     {
-        return _context;
+        return CreateContext();
     }
 
-    public IDbContextFactory<TContext> GetFactory()
+    public IDbContextFactory<TContext> GetDbFactory()
     {
         return new TestDbContextFactory<TContext>(this);
     }
-
-    public void ResetDatabase()
-    {
-        _context.Database.EnsureDeleted();
-        _context.Database.EnsureCreated();
-    }
-
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
 }
 
-public class TestDbContextFactory<TContext> : IDbContextFactory<TContext>
+internal class TestDbContextFactory<TContext> : IDbContextFactory<TContext>
     where TContext : DbContext
 {
     private readonly TestDatabaseProvider<TContext> _database;
@@ -87,7 +86,7 @@ public class TestDbContextFactory<TContext> : IDbContextFactory<TContext>
 
     public TContext CreateDbContext()
     {
-        return _database.GetContext();
+        return _database.GetDbContext();
     }
 
     public TContext CreateDbContext(string[] args)
