@@ -15,9 +15,8 @@
 <MudCard Class="my-2 pa-2" Elevation="5">
     <MudStack>
         <MudItem>
-            <MudToggleIconButton @bind-Toggled="_dropdownToggle"
-                                 Icon="@Icons.Material.Filled.ArrowCircleUp"
-                                 ToggledIcon="@Icons.Material.Filled.ArrowCircleDown"/>
+            <MudToggleIconButton @bind-Toggled="_dropdownToggle" Icon="@Icons.Material.Filled.ArrowCircleUp"
+                ToggledIcon="@Icons.Material.Filled.ArrowCircleDown" />
             <span>Add a new Product</span>
         </MudItem>
     </MudStack>
@@ -26,17 +25,17 @@
     {
         <MudGrid>
             <MudItem xs="4">
-                <MudInput @bind-Value="ProductName" Placeholder="Product name"/>
+                <MudInput @bind-Value="ProductName" Placeholder="Product name" />
             </MudItem>
 
             <MudItem xs="4">
-                <MudInput @bind-Value="ProductPrice" Placeholder="Product price"/>
+                <MudInput @bind-Value="ProductPrice" Placeholder="Product price" />
             </MudItem>
 
             <MudSpacer />
-            
+
             <MudItem xs="12">
-                <MudDivider DividerType="DividerType.FullWidth" Class="my-1"/>
+                <MudDivider DividerType="DividerType.FullWidth" Class="my-1" />
             </MudItem>
 
             <MudItem xs="4">
@@ -52,7 +51,7 @@
 <MudCard Class="my-2 pa-2" Elevation="5">
     <MudGrid>
         <MudItem xs="4">
-            <MudInput @bind-Value="NameFilter" Placeholder="Filter by name"/>
+            <MudInput @bind-Value="NameFilter" Placeholder="Filter by name" class="mr-2" style="width: 100%;" />
         </MudItem>
 
         <MudItem xs="4">
@@ -61,15 +60,15 @@
             </MudButton>
         </MudItem>
 
-        <MudSpacer/>
+        <MudSpacer />
     </MudGrid>
 </MudCard>
 
 <MudDataGrid Items="_products">
     <Columns>
-        <PropertyColumn Property="x => x.Id" Title="Id"/>
-        <PropertyColumn Property="x => x.Name" Title="Name"/>
-        <PropertyColumn Property="x => x.Price" Title="Price"/>
+        <PropertyColumn Property="x => x.Id" Title="Id" />
+        <PropertyColumn Property="x => x.Name" Title="Name" />
+        <PropertyColumn Property="x => x.Price" Title="Price" />
     </Columns>
 </MudDataGrid>
 
@@ -90,10 +89,10 @@
     private async Task AddProduct()
     {
         var command = new CreateProductCommand(new()
-        {
-            Name = ProductName ?? "",
-            Price = ProductPrice ?? 0
-        });
+            {
+                Name = ProductName ?? "",
+                Price = ProductPrice ?? 0
+            });
 
         var result = await CreateProductCommandHandler.HandleAsync(command, CancellationToken.None);
 
@@ -105,7 +104,7 @@
         ProductName = null;
         ProductPrice = null;
         _dropdownToggle = false;
-        
+
         await ListProductsWithName();
     }
 
